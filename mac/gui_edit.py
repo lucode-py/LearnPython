@@ -1,6 +1,7 @@
 import customtkinter
 import subprocess
-
+import os
+import signal
 
 window = customtkinter.CTk()
 window.geometry("550x900")
@@ -15,6 +16,14 @@ with open('sortie.txt', 'w') as fichier_sortie:
 def change_appearance_mode_event(new_appearance_mode: str):
     customtkinter.set_appearance_mode(new_appearance_mode)
 
+def reboot():
+    command = "pgrep Python"
+    pid = subprocess.check_output(command, shell=True)
+
+    os.kill(int(pid), signal.SIGTERM)
+    with open('mac/sortie.txt', 'w') as fichier_sortie:
+        subprocess.Popen(['python3', "/Users/lucasdugard/PycharmProjects/learnPython/mac/playground_mac.py"], stdout=fichier_sortie, stderr=subprocess.STDOUT)
+
 
 # sidebar
 sidebar_frame = customtkinter.CTkFrame(window, width=140, corner_radius=0)
@@ -22,14 +31,17 @@ sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
 window.grid_rowconfigure(4, weight=1)
 
 
-logo_label = customtkinter.CTkLabel(sidebar_frame, text="CustomTkinter", font=CTkFont(size=20, weight="bold"))
+logo_label = customtkinter.CTkLabel(sidebar_frame, text="CustomTkinter", font=customtkinter.CTkFont(size=20, weight="bold"))
 logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
 sidebar_button_1 = customtkinter.CTkButton(sidebar_frame)
 sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
 
+play_button = customtkinter.CTkButton(sidebar_frame, text="Executer le programe", command=reboot)
+play_button.grid(row=6, column=0, padx=20, pady=(10, 10))
+
 appearance_mode_optionemenu = customtkinter.CTkOptionMenu(sidebar_frame, values=["Dark", "Light", "System"], command=change_appearance_mode_event)
-appearance_mode_optionemenu.grid(row=6, column=0, padx=20, pady=(10, 10))
+appearance_mode_optionemenu.grid(row=11, column=0, padx=20, pady=(10, 10))
 
 
 
