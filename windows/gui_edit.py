@@ -25,12 +25,18 @@ sidebar_frame.grid_rowconfigure(4, weight=1)
 logo_label = CTkLabel(sidebar_frame, text="CustomTkinter", font=CTkFont(size=20, weight="bold"))
 logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
+sidebar_button_1 = CTkButton(sidebar_frame)
+sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
+
+play_button = CTkButton(sidebar_frame, text="Executer le programe")
+play_button.grid(row=6, column=0, padx=20, pady=(10, 10))
+
 appearance_mode_optionemenu = CTkOptionMenu(sidebar_frame, values=["Dark", "Light", "System"], command=change_appearance_mode_event)
-appearance_mode_optionemenu.grid(row=6, column=0, padx=20, pady=(10, 10))
+appearance_mode_optionemenu.grid(row=11, column=0, padx=20, pady=(10, 10))
 
 
 
-box_cour = CTkTextbox(window, width=330, font=("menlo", 15))
+box_cour = CTkTextbox(window, width=330, font=("Cascadia Mono SemiBold", 15))
 box_cour.grid(row=0, column=1, padx=(20, 0), pady=(20, 0), sticky="nsew")
 box_cour.insert("5.5", "edit your code")
 
