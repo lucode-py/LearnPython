@@ -1,4 +1,4 @@
-from mac.mouvement import *
+from mouvement import *
 
 def edit():
     avencée()

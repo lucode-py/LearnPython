@@ -27,7 +27,20 @@ def reboot():
             print(type(id_processus))
             break
 
-    os.kill(id_processus, signal.SIGTERM)
+    ma_chaine = str(id_processus)
+
+    pattern = "\n"  # Le motif jusqu'auquel vous souhaitez extraire la chaîne
+
+    position = ma_chaine.find(pattern)  # Trouver la position du motif
+
+    if position != -1:
+        pid = ma_chaine[:position]  # Effectuer le découpage jusqu'à la position
+    else:
+        pid = ma_chaine  # Si le motif n'est pas trouvé, prendre toute la chaîne
+
+
+
+    os.kill(int(pid), signal.SIGTERM)
     with open('sortie.txt', 'w') as fichier_sortie:
         subprocess.Popen(['python', "playground_windows.py"], stdout=fichier_sortie, stderr=subprocess.STDOUT)
 
@@ -37,7 +50,7 @@ sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
 sidebar_frame.grid_rowconfigure(4, weight=1)
 
 
-logo_label = CTkLabel(sidebar_frame, text="CustomTkinter", font=CTkFont(size=20, weight="bold"))
+logo_label = CTkLabel(sidebar_frame, text="Learn Python", font=CTkFont(size=20, weight="bold"))
 logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
 play_button = CTkButton(sidebar_frame, text="Executer le programe", command=reboot)

@@ -3,6 +3,7 @@ import subprocess
 import os
 import signal
 
+
 window = customtkinter.CTk()
 window.geometry("550x900")
 window.title("learn python")
@@ -11,18 +12,28 @@ customtkinter.set_appearance_mode("System")
 
 
 with open('sortie.txt', 'w') as fichier_sortie:
-    subprocess.Popen(['python3', "mac/playground_mac.py"], stdout=fichier_sortie, stderr=subprocess.STDOUT)
+    subprocess.Popen(['python3', "playground_mac.py"], stdout=fichier_sortie, stderr=subprocess.STDOUT)
 
 def change_appearance_mode_event(new_appearance_mode: str):
     customtkinter.set_appearance_mode(new_appearance_mode)
 
 def reboot():
-    command = "pgrep Python"
-    pid = subprocess.check_output(command, shell=True)
+    commande = "pgrep Python"
+    id_processus = subprocess.check_output(commande, shell=True, universal_newlines=True)
+
+
+    pattern = "\n"  # Le motif jusqu'auquel vous souhaitez extraire la chaîne
+
+    position = id_processus.find(pattern)  # Trouver la position du motif
+
+    if position != -1:
+        pid = id_processus[:position]  # Effectuer le découpage jusqu'à la position
+    else:
+        pid = id_processus  # Si le motif n'est pas trouvé, prendre toute la chaîne
 
     os.kill(int(pid), signal.SIGTERM)
-    with open('mac/sortie.txt', 'w') as fichier_sortie:
-        subprocess.Popen(['python3', "/Users/lucasdugard/PycharmProjects/learnPython/mac/playground_mac.py"], stdout=fichier_sortie, stderr=subprocess.STDOUT)
+    with open('sortie.txt', 'w') as fichier_sortie:
+        subprocess.Popen(['python3', "playground_mac.py"], stdout=fichier_sortie, stderr=subprocess.STDOUT)
 
 
 # sidebar
@@ -31,10 +42,10 @@ sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
 window.grid_rowconfigure(4, weight=1)
 
 
-logo_label = customtkinter.CTkLabel(sidebar_frame, text="CustomTkinter", font=customtkinter.CTkFont(size=20, weight="bold"))
+logo_label = customtkinter.CTkLabel(sidebar_frame, text="Learn Python", font=customtkinter.CTkFont(size=20, weight="bold"))
 logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
 
-sidebar_button_1 = customtkinter.CTkButton(sidebar_frame)
+sidebar_button_1 = customtkinter.CTkButton(sidebar_frame, text="les Variables")
 sidebar_button_1.grid(row=1, column=0, padx=20, pady=10)
 
 play_button = customtkinter.CTkButton(sidebar_frame, text="Executer le programe", command=reboot)
