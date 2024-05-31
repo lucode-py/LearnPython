@@ -1,0 +1,4 @@
+avancer()
+avancer()
+gauche()
+avancer()
