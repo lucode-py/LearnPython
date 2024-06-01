@@ -1,0 +1,19 @@
+Known pipe types:
+  wglGraphicsPipe
+(3 aux display modules not yet loaded.)
+:prc(warning): changing default value for ConfigVariable paste-emit-keystrokes from '1' to '0'.
+:pnmimage:png(warning): iCCP: known incorrect sRGB profile
+:display:gsg:glgsg(warning): Shader created-shader produced the following warnings:
+WARNING: Could not find vertex shader attribute 'p3d_Color' to match BindAttributeLocation request.
+WARNING: Could not find vertex shader attribute 'vertex' to match BindAttributeLocation request.
+WARNING: Could not find vertex shader attribute 'p3d_Normal' to match BindAttributeLocation request.
+WARNING: Could not find fragment shader output 'p3d_FragData' to match FragDataBinding request.
+
+package_folder: C:\Users\lucasdugard\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\ursina
+asset_folder: .
+screen resolution: (1920, 1080)
+os: Windows
+development mode: True
+application successfully started
+info: changed aspect ratio: 1.222 -> 1.333
+info: changed aspect ratio: 1.333 -> 1.222
